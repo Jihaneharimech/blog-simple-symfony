@@ -13,9 +13,16 @@
     <div class="card mb-4">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             {{ article.titre }}
-            <a href="#" class="btn btn-secondary">
-                <i class="bi bi-chat-dots"></i> Ajouter un commentaire
-            </a>
+           {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a href="{{ path('article_add_comment', {'id': article.id}) }}" class="btn btn-secondary">
+                    <i class="bi bi-chat-dots"></i> Ajouter un commentaire
+                </a>
+            {% else %}
+                 <a href="{{ path('app_login')}}" class="btn btn-secondary">
+                    <i class="bi bi-chat-dots"></i> Ajouter un commentaire
+                </a>
+            {% endif %}
+
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ article.titre }}</h5>

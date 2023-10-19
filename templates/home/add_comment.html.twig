@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add a Comment{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+
+        <div class="article-details">
+            <h2>{{ article.titre }}</h2>
+            <p>{{ article.contenu }}</p>
+            <!-- Vous pouvez afficher d'autres détails de l'article ici -->
+        </div>
+
+        <form method="post">
+            {{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_row(form.contenu, { 'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire...'} }) }}
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-primary mt-3">Ajouter</button>
+            {{ form_end(form) }}
+        </form>
+
+        <hr>
+
+        <div class="comments">
+            <h3>Les commentaires</h3>
+            <ul class="list-group">
+                {% for commentaire in commentaires %}
+                    <li class="list-group-item">
+                        <div class="comment-header">
+                            <span class="comment-author">{{ commentaire.user.name }}</span>
+                            <span class="comment-date text-muted">{{ commentaire.dateCommentaire|date('d/m/Y') }}</span>
+                        </div>
+                        <div class="comment-content mt-2">{{ commentaire.contenu }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
