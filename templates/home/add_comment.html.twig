@@ -8,11 +8,11 @@
         <div class="article-details">
             <h2>{{ article.titre }}</h2>
             <p>{{ article.contenu }}</p>
-            <!-- Vous pouvez afficher d'autres détails de l'article ici -->
         </div>
 
         <form method="post">
             {{ form_start(form) }}
+            {{ form_row(form._token) }}
 
             <div class="form-group">
                 {{ form_row(form.contenu, { 'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire...'} }) }}

@@ -8,7 +8,6 @@ use App\Form\ArticleType;
 use App\Form\CommentaireType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentaireRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,13 +38,14 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Lier l'utilisateur actuellement connecté comme createur de l'article
+            // Lie l'utilisateur actuellement connecté comme createur de l'article
             $article->setUser($this->getUser());
 
-            // Définir la date de publication comme la date actuelle
+            // Définition la date de publication comme la date actuelle
             $article->setDatePublication(new \DateTime());
 
             $articleRepository->save($article, true);
+            $this->addFlash('notice', 'Votre article a été enregistrée');
 
             return $this->redirectToRoute('app_home');
         }

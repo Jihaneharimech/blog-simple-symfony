@@ -5,6 +5,9 @@
  {% block content %}
 
 <div class="container">
+    {% for notice in app.flashes('notice') %}
+        <div class="alert alert-info"> {{ notice }}</div>
+    {% endfor %}
     <h1 class="text-center my-4">Liste des Articles</h1>
 </div>
 

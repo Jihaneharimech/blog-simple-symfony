@@ -20,7 +20,8 @@
                 {{ form_row(form.contenu, {'attr': {'class': 'form-control', 'placeholder': 'Contenu de l\'article'}}) }}
             </div>
 
-            <div class="mt-3"> <!-- Ajoutez cette ligne pour un espace entre le contenu et le bouton -->
+            <div class="mt-3">
+                  {{ form_row(form._token) }}
                 <button type="submit" class="btn btn-sm btn-primary">Créer l'article</button>
             </div>
 
